@@ -1,0 +1,77 @@
+\documentclass{report}
+
+\include{preamble}
+\include{macros}
+\include{letterfonts}
+
+\usepackage[Glenn]{fncychap}
+
+\title{\Huge{Lösningar HW 13}}
+\author{\huge{}}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+\newpage
+\pagebreak
+
+\qs{}
+{
+\textbf{Induktion 1}: Bevisa följande:
+\begin{equation}
+\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}
+\end{equation}
+
+\begin{equation}
+\sum_{j=1}^{n} (2j-1) = n^2
+\end{equation}
+}
+\sol (1)\\
+\textbf{Basfall} $ n = 1$:
+\begin{equation*}
+\text{V.L:}\:\sum_{i=1}^{1} i^2 = 1;\:\:\:\text{H.L:}\: \frac{1(2)(3)}{6} = 1\:\:\:\:\text{(OK!)}
+\end{equation*}
+\textbf{Induktionsantagande}:
+\begin{equation*}
+\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}
+\end{equation*}
+\textbf{Induktionssteget}:
+\begin{equation*}
+P_{V.L}(n+1) \implies \sum_{i=1}^{n+1} i^2 \iff \sum_{i=1}^{n} i^2 + (n+1)^2 \iff P_{V.L}(n) + (n+1)^2
+\end{equation*}
+Enligt induktionsantagandet kan vi skriva om $P_{V.L}(n)$ till $\frac{n(n+1)(2n+1)}{6}$, s.a.:
+\begin{equation*}
+P_{V.L}(n) + (n+1)^2 \iff \frac{n(n+1)(2n+1)}{6} + (n+1)^2	
+\end{equation*}
+\begin{equation*}
+P_{H.L}(n+1) \implies \frac{(n+1)(n+2)(2n+3)}{6} \iff \frac{(n+1)(2n^2+7n+6)}{6} \iff \frac{(n+1)(2n^2+n+6(n+1))}{6}
+\end{equation*}
+\begin{equation*}
+P_{H.L}(n+1) \implies \frac{(n+1)(2n^2+n+6(n+1))}{6} \iff \frac{n(n+1)(2n+1)+6(n+1)^2}{6} \iff \frac{n(n+1)(2n+1)}{6} + (n+1)^2
+\end{equation*}
+Det sista raden implicerar att $P_{H.L}(n+1) = P_{V.L}(n+1)$. Alltså \textbf{V.S.B}!\\\\
+
+\sol (2)\\
+\textbf{Basfall} $n=1$:
+\begin{equation*}
+\text{V.L:}\:\sum_{i=j}^{1} (2j-1) = 1;\:\:\:\text{H.L:}\: 1^2 = 1\:\:\:\:\text{(OK!)}
+\end{equation*}
+\textbf{Induktionsantagande}:
+\begin{equation*}
+\sum_{j=1}^{n} (2j-1)= n^2
+\end{equation*}
+\textbf{Induktionssteget}:
+\begin{equation*}
+P_{V.L}(n+1) \implies \sum_{j=1}^{n+1}(2j-1) \iff \sum_{j=1}^{n}(2j-1) + 2(n+1)-1 \iff P_{V.L}(n) + 2n+1
+\end{equation*}
+Enligt induktionsantagandet kan vi skriva om $P_{V.L}(n)$ till $n^2$, s.a.:
+\begin{equation*}
+P_{V.L}(n) + 2n+1 \iff n^2 + 2n + 1 \iff (n+1)^2 = P_{V.L}(n+1)
+\end{equation*}
+\begin{equation*}
+P_{H.L}(n+1) \implies (n+1)^2
+\end{equation*}
+Alltså $P_{H.L}(n+1) = P_{V.L}(n+1)$ \textbf{V.S.B}!
+\end{document}

@@ -16,7 +16,6 @@
 \maketitle
 \newpage
 \pagebreak
-
 \qs{}
 {
 \textbf{Induktion 1}: Bevisa följande:
@@ -79,9 +78,9 @@ Alltså $P_{H.L}(n+1) = P_{V.L}(n+1)$ \textbf{V.S.B}!
 
 \qs{}
 {
-\textbf{Iterativ korrekhet 2}:
+\textbf{Iterativ korrekhet 2}
 }
-\sol Koden kan skrivas om som en funktion:
+\sol Koden kan skrivas om som en funktion (loop invarianten efter iterationen $ j $ är $\prod_{i = 1}^{j} x $):
 \begin{equation*}
 	f(x, n) = \prod_{i = 1}^{n} x 
 \end{equation*}
@@ -110,13 +109,53 @@ Enligt induktionsantagandet kan vi ersätta $ P_{V.L}(n) $ till $ x^n $, s.a.:
 Alltså $ P_{V.L}(n+1) = P_{H.L}(n+1) $. \textbf{V.S.B}!\\\\
 
 \noindent
-Eftersom $ f(x,n) $ är implementerad med hjälp av en for-loop som i sin tur loopar i intervallen $ [1,n] $, så är tidskomplexiteten, $ O(f(x,n)) = n $ 
+Eftersom $ f(x,n) $ är implementerad med hjälp av en for-loop som i sin tur loopar i intervallen $ [1,n] $, så är tidskomplexiteten, $ \mathcal{O}(f(x,n)) = n $ 
 
+\vspace{30pt}
 \qs{}
 {
-\textbf{Rekursiv korrekhet}:
+	\textbf{Rekursiv korrekhet}: Vi vill bevisa att $ P(n+1) = x^{n+1} $
 }
-\sol Eftersom vi har bevisat korrekheten för funktionen 'expIterative' så kan vi börja med att sätta basfallen till $ n = 5 $  
+\sol Eftersom vi har bevisat korrekheten för funktionen 'expIterative' så kan vi börja med att sätta basfallen till $ n = 5 $:
+\begin{equation*}
+P(5) = P( \frac{n}{2} ) \cdot P( \frac{n+1}{2} ) \iff  P(2) \cdot P(3) = x^2 \cdot x^3 = x^5\:\:\:\: \text{(OK!)}  
+\end{equation*}
+Notera att divisionen är heltalsdivision så att i matematiska termer ska $ P(n) $ skrivas som:
+\begin{equation*}
+	P(n) = P(\floor{ \frac{n}{2} } ) \cdot P( \floor{ \frac{n+1}{2} } )
+\end{equation*}
+Vi \textbf{antar} att $ P(k) $ är korrekt, d.v.s. $ P(k) = x^k $ för alla $ k \in [1,n] : \mathbb{Z}^+ $. Istället för att hålla på med golvfunktionen låt oss expanda golvfunktionen och definiera två versioner av $ P(n) $ beroende på om $ n $ är udda eller jämn:
+\begin{equation*}
+P(n) = P( \frac{n}{2} ) \cdot P( \frac{n}{2} ),\:\:\:n = 2k,\:k \in \mathbb{Z}^+ 
+\end{equation*}
+\begin{equation*}
+	P(n) = P( \frac{n-1}{2} ) \cdot P( \frac{n+1}{2}  ),\:\:\:n = 2k+1,\:k \in \mathbb{Z}^+
+\end{equation*}
+Detta kan vi tillämpa för att bevisa att $ P(n+1) = x^{n+1}$, alltså att $ P(n+1) $ är sann.
+
+\pagebreak
+\noindent
+\textbf{Fall 1}: $ n+1 $ är jämn:
+\begin{equation}
+	P(n+1) = P( \frac{n+1}{2} ) \cdot P( \frac{n+1}{2} ) \iff x^{ \frac{n+1}{2} } \cdot x^{ \frac{n+1}{2} } = x^{n+1} 
+\end{equation}
+\noindent
+\textbf{Fall 2:} $ n+1 $ är udda:
+\begin{equation}
+	P(n+1) = P( \frac{n}{2} ) \cdot P( \frac{n+2}{2} ) = x^{ \frac{n}{2} } \cdot x^{ \frac{n+2}{2} } = x^{n+1} 
+\end{equation}
+\nt{Ekvivalensen i (3) och (4) gäller eftersom $ 1 < \frac{n}{2}, \frac{n+1}{2} < n+1 $ och för att vi tillämpar induktionsantagandet innan. }
+\vspace{20pt}
+\noindent
+Med det så har vi bevisat för både fall att $ P(n+1) $ blir $ x^{n+1} $ som motsvarar output av funktionen 'expRecursive(x,n+1)'. \textbf{V.S.B}!\\\\
+
+\noindent
+Vad är \textbf{tidskomplexiteten} för den rekursiva funktionen?\\\\
+Eftersom programmet callar sig själv 2 gånger för en funktions call, så är $ a = 2 $. Då får varje rekursiv function call, ungefär hälften av datan, blir en input för den rekursiva function call, alltså $ b = 2 $. Eftersom varje subproblem kommer sluta med att beräkna 'expIterative' för värde i intervallet $ [1,4] $ så kan man säga att kostnaden för varje subproblem blir konstant, alltså $ d=0 $. Detta är så eftersom subproblemet behöver \textbf{inte} beräkna 'expIterative' med värde i intervallet $ [1,k] $ där $ k $ beror av $ n $.\\\\
+\noindent
+\nt{Ekvivalensen i (3) gäller eftersom $ \frac{n+1}{2} < n+1 $ och för att vi tillämpar induktionsantagandet innan. }
+\noindent
+Genom att använda mästarsatsen så blir tidskomplexiteten för 'expRecursive' $ \Theta(n^{\log_{2}2}) \iff \Theta(n)$ 
 
 
 

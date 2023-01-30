@@ -153,8 +153,6 @@ Med det så har vi bevisat för både fall att $ P(n+1) $ blir $ x^{n+1} $ som m
 Vad är \textbf{tidskomplexiteten} för den rekursiva funktionen?\\\\
 Eftersom programmet callar sig själv 2 gånger för en funktions call, så är $ a = 2 $. Då får varje rekursiv function call, ungefär hälften av datan, blir en input för den rekursiva function call, alltså $ b = 2 $. Eftersom varje subproblem kommer sluta med att beräkna 'expIterative' för värde i intervallet $ [1,4] $ så kan man säga att kostnaden för varje subproblem blir konstant, alltså $ d=0 $. Detta är så eftersom subproblemet behöver \textbf{inte} beräkna 'expIterative' med värde i intervallet $ [1,k] $ där $ k $ beror av $ n $.\\\\
 \noindent
-\nt{Ekvivalensen i (3) gäller eftersom $ \frac{n+1}{2} < n+1 $ och för att vi tillämpar induktionsantagandet innan. }
-\noindent
 Genom att använda mästarsatsen så blir tidskomplexiteten för 'expRecursive' $ \Theta(n^{\log_{2}2}) \iff \Theta(n)$ 
 
 

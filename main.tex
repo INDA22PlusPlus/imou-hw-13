@@ -56,7 +56,7 @@ Det sista raden implicerar att $P_{H.L}(n+1) = P_{V.L}(n+1)$. Alltså \textbf{V.
 \sol (2)\\
 \textbf{Basfall} $n=1$:
 \begin{equation*}
-\text{V.L:}\:\sum_{i=j}^{1} (2j-1) = 1;\:\:\:\text{H.L:}\: 1^2 = 1\:\:\:\:\text{(OK!)}
+P_{V.L}(1):\:\sum_{i=j}^{1} (2j-1) = 1;\:\:\:P_{H.L}(1):\: 1^2 = 1\:\:\:\:\text{(OK!)}
 \end{equation*}
 \textbf{Induktionsantagande}:
 \begin{equation*}
@@ -74,4 +74,50 @@ P_{V.L}(n) + 2n+1 \iff n^2 + 2n + 1 \iff (n+1)^2 = P_{V.L}(n+1)
 P_{H.L}(n+1) \implies (n+1)^2
 \end{equation*}
 Alltså $P_{H.L}(n+1) = P_{V.L}(n+1)$ \textbf{V.S.B}!
+
+\pagebreak 
+
+\qs{}
+{
+\textbf{Iterativ korrekhet 2}:
+}
+\sol Koden kan skrivas om som en funktion:
+\begin{equation*}
+	f(x, n) = \prod_{i = 1}^{n} x 
+\end{equation*}
+Det vi måste bevisa då är att $ f(x,n) = x^n $ som kan göras med hjälp av induktionsbevis:\\\\
+
+\noindent
+\textbf{Basfall} $ n = 1 $ :
+\begin{equation*}
+		P_{V.L}(1): x;\:\:\:\: P_{H.L}(1): x^1\:\:\: \text{(OK!)}   
+\end{equation*}
+\textbf{Induktionsantagande}:
+\begin{equation*}
+f(x,n) = x^n
+\end{equation*}
+\textbf{Induktionssteget}:
+\begin{equation*}
+	P_{V.L}(n+1) \implies \prod_{i=1}^{n+1}x \iff x\prod_{i=1}^{n}x \iff x P_{V.L}(n)
+\end{equation*}
+Enligt induktionsantagandet kan vi ersätta $ P_{V.L}(n) $ till $ x^n $, s.a.:
+\begin{equation*}
+	P_{V.L}(n+1) \implies xP_{V.L}(n) \iff x \cdot x^n \iff x^{n+1}
+\end{equation*}
+\begin{equation*}
+	P_{H.L}(n+1) \implies x^{n+1}
+\end{equation*}
+Alltså $ P_{V.L}(n+1) = P_{H.L}(n+1) $. \textbf{V.S.B}!\\\\
+
+\noindent
+Eftersom $ f(x,n) $ är implementerad med hjälp av en for-loop som i sin tur loopar i intervallen $ [1,n] $, så är tidskomplexiteten, $ O(f(x,n)) = n $ 
+
+\qs{}
+{
+\textbf{Rekursiv korrekhet}:
+}
+\sol Eftersom vi har bevisat korrekheten för funktionen 'expIterative' så kan vi börja med att sätta basfallen till $ n = 5 $  
+
+
+
 \end{document}
